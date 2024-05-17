@@ -81,13 +81,25 @@ public class StudentDAO implements StudentDAOInterface {
     }
 
     @Override
-    public boolean update(int roll, String update, int ch, Student s) {
+    public boolean update(int roll, String update, int ch) {
         int choice = ch;
         boolean flag = false;
         try {
             if (choice == 1) {
                 Connection con = DBConnection.createConnection();
                 String query = "update student set sname=? where rollnum=?";
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setString(1, update);
+                ps.setInt(2, roll);
+                ps.executeUpdate();
+                flag = true;
+
+                ps.close();
+                con.close();
+            }
+            if(choice == 2){
+                Connection con = DBConnection.createConnection();
+                String query = "update student set clgname=? where rollnum=?";
                 PreparedStatement ps = con.prepareStatement(query);
                 ps.setString(1, update);
                 ps.setInt(2, roll);

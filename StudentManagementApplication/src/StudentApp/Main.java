@@ -62,11 +62,25 @@ public class Main {
                         String sname = sc.next();
                         Student std = new Student();
                         std.setName(sname);
-                        boolean flag = dao.update(rnum, sname, choice, std);
+                        boolean flag = dao.update(rnum, sname, choice);
                         if (flag)
                             System.out.println("Name updated successfully");
                         else
                             System.out.println("Something went wrong...");
+                    } else if (choice == 2) {
+                        System.out.println("enter roll number");
+                        int rnum = sc.nextInt();
+                        System.out.println("Enter new clgname");
+                        String clgname = sc.next();
+                        Student std = new Student();
+                        std.setClgName(clgname);
+                        boolean flag = dao.update(rnum, clgname, choice);
+                        if (flag)
+                            System.out.println("clgName updated successfully");
+                        else
+                            System.out.println("Something went wrong...");
+                    } else {
+                        System.out.println("Invalid choice");
                     }
                     break;
                 case 5:
